@@ -18,6 +18,7 @@ import axios from 'axios';
 
 const Itinerary = ({id}) => {
   let [isOpen, setIsOpen] = useState(true)
+  const [allDestination, setAllDestination] = useState([])
 
   function closeModal() {
     setIsOpen(1)
@@ -29,31 +30,46 @@ const Itinerary = ({id}) => {
 
   // get Itinerary
   const getItinerary = async(id) => {
-    const res = await axios.get("")
+      const res = await axios.get(`http://localhost:4000/itinerary/${id}`)
 
     return res.data
   }
 
-  // post Itinerary
+  // Add Itinerary
   const postItinerary = async(id) => {
     const res = await axios.post("")
-
     return res.data
   }
 
   // update
   const updateItinerary = async(id) => {
-    const res = await axios.put("")
+    const res = await axios.put(`http://localhost:4000/itinerary/${id}`, updItinerary, {
+      headers: {
+        'Content-type': 'application/json'
+      }
+    })
 
-    return res.data
+    // setItinerary(itineraries.map{itinerary=>itinerary.id===id? {...itiernary, country:res.data.country}})
   }
 
     // delete
-    const updateItinerary = async(itinerary_id) => {
-      const res = await axios.put("")
+    const deleteItinerary = async(itinerary_id) => {
+
+      await axios.delete(`http://localhost:4000/itinerary/${itinerary_id}`)
+      .catch(function(error) {
+        if (error.response) {
+          console.log(error.response.data)
+        }
+      })
   
-      return res.data
     }
+
+  // get all destination
+  const getAllDestination = async(itinerary_id) => {
+    const res = await axios(`http://localhost:4000/destination/${itinerary_id}`)
+
+    return res.data
+  }
 
   return (
     <CssBaseline>
@@ -62,6 +78,7 @@ const Itinerary = ({id}) => {
         <Typography variant="h4" className="mb-4">
           Itinerary
         </Typography>
+
 
         <div className="w-full max-w-md">
           <div className="flex flex-col mb-4">
@@ -82,17 +99,28 @@ const Itinerary = ({id}) => {
           <div className="flex justify-center mb-4">
             <Card data={'country'} />
             {/* Pass itinerary and Id */}
-
-            {/* {Itineraries.map((itinerary_id, destination_id) => {
+{/* 
+            {.map((itinerary_id, destination_id) => {
               return 
               <Card></Card>
             })} */}
           </div>
           <div className="flex justify-center">
             <Button variant="outlined" onClick={openModal}>
-              Add
+              Add Destination
+            </Button>
+
+            <Button variant="outlined" onClick={updateItinerary} style={{marginLeft:"10px"}}>
+              Save
             </Button>
           </div>
+
+          {/* <div className="flex justify-center">
+            <Button variant="outlined" onUpdate={updateItinerary}>
+              Save
+            </Button>
+          </div> */}
+
         </div>
       </Container>
       {/* <Popover isOpen={isOpen >= 0}/> */}
