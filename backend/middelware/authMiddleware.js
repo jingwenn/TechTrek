@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-const jwtSecret = 'fasefraw4r5r3wq45wdfgw34twdfg';
+import { jwtSecret } from "../config.js";
 
 export function verifyToken(req, res, next) {
   const {token} = req.cookies;
@@ -13,17 +13,17 @@ export function verifyToken(req, res, next) {
     }
 };
 
-// export async function verifyUserClaim(req, res, next) {
+// export async function verifyUser(req, res, next) {
 //   const {id} = req.params
 
-//   const claim = await Claims.findById(id);
-//   if (!claim) {
-//     return res.status(404).send("claim not found")
+//   const  = await .findById(id);
+//   if (!) {
+//     return res.status(404).send(" not found")
 //   }
-//   if(claim.userId != req.userId) {
+//   if(.userId != req.userId) {
 //     return res.status(404).send("Unauthorised Token")
 //   }
-//   res.claimId = id;
+//   res.Id = id;
 //   next()
 // };
 
