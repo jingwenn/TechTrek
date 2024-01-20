@@ -7,6 +7,7 @@ export const AppContext = createContext();
 export const AppContextProvider = ({ children }) => {
     const [authToken, setAuthToken] = useState('');
     const [countryMapping, setCountryMapping] = useState({});
+    const [destinationMapping, setDestinationMapping] = useState({});
     const [allItenararies, setAllItenararies] = useState({});
     const [itenarary, setItenarary] = useState({});
     const [userInfo, setUserInfo] = useState({});
@@ -28,7 +29,24 @@ export const AppContextProvider = ({ children }) => {
             })
         };
 
+        const getDestinations = () => {
+            axios.get('http://localhost:4000/destination', {
+                headers: {
+                    'Content-Type' : 'application/json',
+                }
+            }).then((res) => {
+                const destinationData = res.data.reduce((obj, item) => ({
+                    ...obj,
+                    [item['_id']] : item.name
+                }), {})
+                setDestinationMapping(destinationData);
+            }).catch((err) => {
+                console.log(err);
+            })
+        }
+
         getCountryMapping();
+        getDestinations();
     }, [])
 
     return (
