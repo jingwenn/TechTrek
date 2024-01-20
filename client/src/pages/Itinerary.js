@@ -9,44 +9,98 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { TextField } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import Card from '../components/Card';
+import { useState } from 'react'
+import { Dialog } from '@headlessui/react'
+import Popover from '../components/Popover';
+import axios from 'axios';
 
 
-const Itineraries = () => {
+
+const Itinerary = ({id}) => {
+  let [isOpen, setIsOpen] = useState(true)
+
+  function closeModal() {
+    setIsOpen(1)
+  }
+
+  function openModal() {
+    setIsOpen(0)
+  }
+
+  // get Itinerary
+  const getItinerary = async(id) => {
+    const res = await axios.get("")
+
+    return res.data
+  }
+
+  // post Itinerary
+  const postItinerary = async(id) => {
+    const res = await axios.post("")
+
+    return res.data
+  }
+
+  // update
+  const updateItinerary = async(id) => {
+    const res = await axios.put("")
+
+    return res.data
+  }
+
+    // delete
+    const updateItinerary = async(itinerary_id) => {
+      const res = await axios.put("")
+  
+      return res.data
+    }
+
   return (
     <CssBaseline>
-      <Container maxWidth="xs" sx={{marginTop:"40px"}}>
-        <div style={{ display: 'flex', alignItems: 'center'}}>
-          <Typography variant="h4" style={{marginRight: "10px"}}> Itinerary Title </Typography>
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-            <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
-          </svg>
-        </div>
+      {/* <div className="flex justify-center"> */}
+      <Container className="flex flex-col items-center mt-16">
+        <Typography variant="h4" className="mb-4">
+          Itinerary
+        </Typography>
 
-        <Grid container spacing={2}>
-          <Grid item style={{display:"flex"}}>
-            <p>Country:</p>
-            <Typography style={{border:"1px solid", borderRadius:"5px", width: '100%'}}>$1000</Typography>
-          </Grid>
-        </Grid>
-        <Grid container spacing={2}>
-          <Grid item style={{ display: 'flex', marginTop: '10px' }}>
-            <p>Budget:</p>
-            <Typography style={{ border: '1px solid', borderRadius: '5px' }}>$1000</Typography>
-          </Grid>
-        </Grid>
-        <Grid container spacing={2} style={{ width: '100%'}}>
-          <Grid item style={{ display: 'flex', marginTop: '10px', marginBottom:"10px"}}>
+        <div className="w-full max-w-md">
+          <div className="flex flex-col mb-4">
+            <p className="mb-1">Itinerary Title:</p>
+            <TextField id="outlined-basic" variant="outlined" />
+          </div>
+
+          <div className="flex flex-col mb-4">
+            <p className="mb-1">Country:</p>
+            <TextField id="outlined-basic" variant="outlined" />
+          </div>
+
+          <div className="flex flex-col mb-4">
+            <p className="mb-1">Budget:</p>
+            <TextField id="outlined-basic" variant="outlined" />
+          </div>
+      
+          <div className="flex justify-center mb-4">
             <Card data={'country'} />
-          </Grid>
-        </Grid>
+            {/* Pass itinerary and Id */}
 
-        <Button variant="outlined" alignItems="center">Add</Button>
-
+            {/* {Itineraries.map((itinerary_id, destination_id) => {
+              return 
+              <Card></Card>
+            })} */}
+          </div>
+          <div className="flex justify-center">
+            <Button variant="outlined" onClick={openModal}>
+              Add
+            </Button>
+          </div>
+        </div>
       </Container>
+      {/* <Popover isOpen={isOpen >= 0}/> */}
+      {/* </div> */}
     </CssBaseline>
+    
+
   )
 }
 
-export default Itineraries
-
-// 'container mx-auto flex flex-col w-full justify-center items-center'
+export default Itinerary
