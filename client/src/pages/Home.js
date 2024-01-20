@@ -6,7 +6,7 @@ import Card from '../components/Card';
 
 
 const Home = props => {
-  const { allItineraries, setAllItineraries } = useContext(AppContext); 
+  const { allItineraries, setAllItineraries, authToken } = useContext(AppContext); 
 
   const getItineraries = async (req, res) => {
     axios.get('http://localhost:4000/itenarary/',{
@@ -25,10 +25,9 @@ const Home = props => {
     axios.delete('http://localhost:4000/itenarary/',{
       headers: {
         'Content-Type' : 'application/json',
-        'Cookie' : 'uid'
+        'Authorization' : authToken
       }
     }).then(() => {
-      setAllItineraries(res.data);
     }).catch((err) => {
       console.log(err);
     })
@@ -44,15 +43,16 @@ const Home = props => {
           "Singapore"
         }/>
       </div>
-      <div>
+      {/* <div>
         {allItineraries.map((itinerary) => {
           return (
-            <Card >
-              
-            </Card>
+            <Card 
+            {title: {itinerary.title}
+            budget:{itinerary.budget}}
+              />
           )
         })}
-      </div>
+      </div> */}
     
 
     </div>
