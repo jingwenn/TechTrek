@@ -73,24 +73,24 @@ const Popover = (props) => {
                             </span>
                           {
                             isSelect ? (
-                              <select className='border py-0.5 my-2 rounded' {...register('name')}>
+                              <select value={props.data.name} className='border py-0.5 my-2 rounded' {...register('name')}>
                                 <option>
                                   name
                                 </option>
                               </select>
                             ) : (
-                              <input type="text" className='border my-2 rounded' {...register('name')}/>
+                              <input type="text" value={props.data.name} className='border my-2 rounded' {...register('name')}/>
                             )
                           }
                           
                       </label>
                       <label className='text-black flex flex-col w-full'>
                             Cost
-                          <input type="number" className='border my-2 rounded' {...register('cost')}/>
+                          <input type="number" value={props.data.cost} className='border my-2 rounded' {...register('cost')}/>
                       </label>
                       <label className='text-black flex flex-col w-full'>
                             Notes
-                          <input type="text" className='border my-2 rounded' {...register('notes')}/>
+                          <textarea type="text" value={props.data.notes} className='border my-2 rounded' {...register('notes')}/>
                       </label>
                       <div className="mt-4 flex justify-end">
                           <button
