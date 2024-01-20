@@ -1,12 +1,11 @@
 import mongoose from "mongoose";
-import Country from "./Country";
 
 const destinationSchema = mongoose.Schema(
   {
     country_id: {
       type: mongoose.Schema.Types.ObjectID,
       required: true,
-      ref: Country,
+      ref: "Country",
     },
 
     cost: {
