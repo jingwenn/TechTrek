@@ -1,18 +1,17 @@
 import mongoose from "mongoose";
 
-const userSchema = mongoose.Schema(
-    {
-
-        name: {
-            type: String,
-            required: true,
-        },
+const countrySchema = mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: true,
     },
-    {
-        timestamps: true,
-    }
-)
+  },
+  {
+    timestamps: true,
+  }
+);
 
-const Country = mongoose.model('Country', userSchema);
+const Country = mongoose.model("Country", countrySchema);
 
 export default Country;
