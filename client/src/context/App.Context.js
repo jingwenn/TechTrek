@@ -56,19 +56,12 @@ export const AppContextProvider = ({ children }) => {
                 setAuthToken,
                 countryMapping,
                 setCountryMapping,
-<<<<<<< HEAD
                 allItineraries,
                 setAllItineraries,
                 itinerary, 
-                setItinerary
-=======
-                allItenararies,
-                setAllItenararies,
-                itenarary, 
-                setItenarary,
+                setItinerary,
                 destinationMapping,
-                setDestinationMapping,
->>>>>>> 9a5c880a36b2ac238d0366cdeb11cc57395735c8
+                setDestinationMapping
             }}
         >
             {children}
