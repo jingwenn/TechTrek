@@ -3,6 +3,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import User from '../models/User.js'
 import cookieParser from "cookie-parser";
+import { jwtSecret } from "../config.js";
 
 const router = express.Router();
 router.use(cookieParser());
