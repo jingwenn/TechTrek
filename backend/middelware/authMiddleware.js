@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
 import { jwtSecret } from "../config.js";
+// import Itinerary from "../models/Itinerary.js"
 
 export function verifyToken(req, res, next) {
   const {token} = req.cookies;
@@ -13,14 +14,14 @@ export function verifyToken(req, res, next) {
     }
 };
 
-// export async function verifyUser(req, res, next) {
+// export async function verifyUserForItinerary(req, res, next) {
 //   const {id} = req.params
 
-//   const  = await .findById(id);
-//   if (!) {
-//     return res.status(404).send(" not found")
+//   const itinerary = await Itinerary.findById(id);
+//   if (!itinerary) {
+//     return res.status(404).send("not found")
 //   }
-//   if(.userId != req.userId) {
+//   if(itinerary.userId != req.userId) {
 //     return res.status(404).send("Unauthorised Token")
 //   }
 //   res.Id = id;
