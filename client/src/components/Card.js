@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import EditDestination from './EditDestination'
 
 const Card = (props) => {
   return (
