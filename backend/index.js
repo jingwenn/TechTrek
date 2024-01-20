@@ -4,6 +4,8 @@ import mongoose from "mongoose";
 import cors from 'cors';
 import cookieParser from "cookie-parser";
 import userRoutes from "./routes/userRoutes.js"
+import itineraryRoutes from "./routes/itineraryRoutes.js"
+import itineraryDestinationRoutes from "./routes/itineraryDestinationRoutes.js"
 
 const app = express();
 app.use(cors({
@@ -16,6 +18,8 @@ app.use(cors({
 app.use(express.json());
 app.use(cookieParser());
 app.use('/users', userRoutes);
+app.use('/itinerary', itineraryRoutes);
+app.use('/itineraryDestination', itineraryDestinationRoutes);
 
 app.get('/', (req, res) => {
     console.log(req)
