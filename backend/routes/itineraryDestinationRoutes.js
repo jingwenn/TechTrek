@@ -1,7 +1,5 @@
 import express from "express";
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
-import User from "../models/User.js";
+import ItineraryDestination from '../models/ItineraryDestination.js'
 import cookieParser from "cookie-parser";
 
 const router = express.Router();
@@ -11,8 +9,8 @@ router.use(cookieParser());
 router.post('/', async (req, res) => {
   try {
     const newItineraryDestination = {
-      itineraryid: req.body.itineraryid,
-      destinationid: req.body.destinationid,
+      itinerary_id: req.body.itinerary_id,
+      destination_id: req.body.destination_id,
     };
     const itineraryDestination = await ItineraryDestination.create(newItineraryDestination);
     return res.status(201).send(itineraryDestination)
@@ -51,8 +49,8 @@ router.get('/', async (req, res) => {
 router.put('/:id', async (req, res) => {
   try {
     const itineraryDestination = await ItineraryDestination.findById(req.params.id).exec();
-    itineraryDestination.itineraryid = req.body.itineraryid;
-    itineraryDestination.destinationid = req.body.destinationid;
+    itineraryDestination.itinerary_id = req.body.itinerary_id;
+    itineraryDestination.destination_id = req.body.destination_id;
     await itineraryDestination.save();
     return res.status(201).send(itineraryDestination)
   }
