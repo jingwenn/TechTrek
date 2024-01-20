@@ -1,5 +1,4 @@
 import jwt from "jsonwebtoken";
-import Claims from '../models/Claims.js'
 const jwtSecret = 'fasefraw4r5r3wq45wdfgw34twdfg';
 
 export function verifyToken(req, res, next) {
@@ -14,17 +13,17 @@ export function verifyToken(req, res, next) {
     }
 };
 
-export async function verifyUserClaim(req, res, next) {
-  const {id} = req.params
+// export async function verifyUserClaim(req, res, next) {
+//   const {id} = req.params
 
-  const claim = await Claims.findById(id);
-  if (!claim) {
-    return res.status(404).send("claim not found")
-  }
-  if(claim.userId != req.userId) {
-    return res.status(404).send("Unauthorised Token")
-  }
-  res.claimId = id;
-  next()
-};
+//   const claim = await Claims.findById(id);
+//   if (!claim) {
+//     return res.status(404).send("claim not found")
+//   }
+//   if(claim.userId != req.userId) {
+//     return res.status(404).send("Unauthorised Token")
+//   }
+//   res.claimId = id;
+//   next()
+// };
 
