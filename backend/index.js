@@ -3,9 +3,11 @@ import { PORT, mongoDbURL } from "./config.js";
 import mongoose from "mongoose";
 import cors from 'cors';
 import cookieParser from "cookie-parser";
+import userRoutes from "./routes/userRoutes.js"
 
 const app = express();
 app.use(cors({
+    //
     origin: ["http://localhost:3000"],
     methods: ["GET", "POST"],
     credentials:true
@@ -13,6 +15,7 @@ app.use(cors({
 
 app.use(express.json());
 app.use(cookieParser());
+app.use('/users', userRoutes);
 
 app.get('/', (req, res) => {
     console.log(req)
