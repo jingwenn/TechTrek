@@ -16,8 +16,8 @@ router.post("/", async (req, res) => {
         name: req.body.name,
     };
 
-    const Country = await Country.create(newCountry);
-    return res.status(201).send(Country);
+    const country = await Country.create(newCountry);
+    return res.status(201).send(country);
   } catch (error) {
     console.log(error.message);
     res.status(500).send({ message: error.message });
