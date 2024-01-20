@@ -59,7 +59,9 @@ export const AppContextProvider = ({ children }) => {
                 allItenararies,
                 setAllItenararies,
                 itenarary, 
-                setItenarary
+                setItenarary,
+                destinationMapping,
+                setDestinationMapping,
             }}
         >
             {children}
