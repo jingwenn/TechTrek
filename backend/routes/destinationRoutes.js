@@ -13,9 +13,9 @@ router.post("/", async (req, res) => {
   try {
     const newDestination = {
       country_id: req.body.country_id,
+      cost: req.body.cost,
       name: req.body.name,
-      description: req.body.description,
-      image: req.body.image,
+      notes: req.body.notes,
     };
 
     const destination = await Destination.create(newDestination);
@@ -58,9 +58,9 @@ router.put("/:id", async (req, res) => {
     const destination = await Destination.findById(req.params.id);
     if (destination) {
       destination.country_id = req.body.country_id || destination.country_id;
+      destination.cost = req.body.cost || destination.cost;
       destination.name = req.body.name || destination.name;
-      destination.description = req.body.description || destination.description;
-      destination.image = req.body.image || destination.image;
+      destination.notes = req.body.notes || destination.notes;
 
       const updatedDestination = await destination.save();
       res.send(updatedDestination);
