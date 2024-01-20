@@ -1,10 +1,11 @@
-import {React, useState} from 'react'
+import {React, useState, useContext} from 'react'
 import PropTypes from 'prop-types'
-import axios from 'axios'
+import axios, { all } from 'axios'
+import { AppContext } from '../context/App.Context'
 
 
 const Home = props => {
-  const [allItenararies, setAllItenararies] = useState({});
+  const { allItenararies, setAllItenararies } = useContext(AppContext); 
 
   const getItenararies = async (req, res) => {
     axios.get('http://localhost:4000/itenarary/',{
