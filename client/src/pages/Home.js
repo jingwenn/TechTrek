@@ -1,26 +1,33 @@
-import {React, useState, useContext} from 'react'
+import {React, useState, useContext, useEffect} from 'react'
 import PropTypes from 'prop-types'
 import axios, { all } from 'axios'
 import { AppContext } from '../context/App.Context'
 import Card from '../components/Card';
-// import "./Home.css";
+//import "./Home.css";
 
 
 const Home = props => {
   const { allItineraries, setAllItineraries, authToken } = useContext(AppContext); 
 
   const getItineraries = async (req, res) => {
-    axios.get('http://localhost:4000/itinerary/',{
+    await axios.get(`http://localhost:4000/itinerary`,{
+
+    },{
       headers: {
         'Content-Type' : 'application/json',
-        'Authorization' : 'authToken'
+        'Authorization' : authToken
       }
     }).then(() => {
-      setAllItineraries(res.data);
+      console.log(res)
+      // setAllItineraries(res.data);
     }).catch((err) => {
       console.log(err);
     })
   }
+
+  useEffect(() => {
+    getItineraries();
+  }, [])
 
   const removeItinerary = async (id) => {
     axios.delete('/:id',{
@@ -51,6 +58,9 @@ const Home = props => {
             <Card title={itinerary.title} budget={itinerary.budget}/>
           )
         })}
+      </div>
+
+      <div>
       </div>
     
 
