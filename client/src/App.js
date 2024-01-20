@@ -12,7 +12,7 @@ const App = () => {
   return (
     <AppContextProvider>
       <Routes>
-        <Route path='/' element={<Login/>}/>
+        <Route path='/' element={<Home/>}/>
         <Route exact path='/home' element={<ProtectedRoute/>}>
           <Route exact path='/home' element={<Home/>}/>
         </Route>

@@ -7,8 +7,8 @@ export const AppContext = createContext();
 export const AppContextProvider = ({ children }) => {
     const [authToken, setAuthToken] = useState('');
     const [countryMapping, setCountryMapping] = useState({});
-    const [allItenararies, setAllItenararies] = useState({});
-    const [itenarary, setItenarary] = useState({});
+    const [allItineraries, setAllItineraries] = useState([]);
+    const [itinerary, setItinerary] = useState({});
     const [userInfo, setUserInfo] = useState({});
 
     useEffect(() => {
@@ -38,10 +38,10 @@ export const AppContextProvider = ({ children }) => {
                 setAuthToken,
                 countryMapping,
                 setCountryMapping,
-                allItenararies,
-                setAllItenararies,
-                itenarary, 
-                setItenarary
+                allItineraries,
+                setAllItineraries,
+                itinerary, 
+                setItinerary
             }}
         >
             {children}

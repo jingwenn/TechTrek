@@ -44,9 +44,7 @@ const Home = props => {
 
   return (
     <div>
-      <header>
         <h1>My Itineraries</h1>
-      </header>
       <div class="flex justify-center">
         <Card data={
           "Singapore"

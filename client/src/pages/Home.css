@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
 
-header {
-  background: url('http://www.autodatz.com/wp-content/uploads/2017/05/Old-Car-Wallpapers-Hd-36-with-Old-Car-Wallpapers-Hd.jpg');
+/* header {
   text-align: center;
   width: 100%;
   height: auto;
@@ -19,7 +18,7 @@ header .overlay{
     text-shadow: 1px 1px 1px #333;
     background-image: linear-gradient( 135deg, #1aa7ec 10%, #ffffff6b 100%);
 
-  }
+  } */
 
  h1 {
   text-align: center;
@@ -35,3 +34,31 @@ header .overlay{
 
  }
  
+ .btn {
+    display: inline-block;
+    background: #000;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 15px;
+    font-family: inherit;
+    justify-content: center;
+  }
+  
+  .btn:focus {
+    outline: none;
+  }
+  
+  .btn:active {
+    transform: scale(0.98);
+  }
+  
+  .btn-block {
+    display: block;
+    width: 100%;
+  }
+  
