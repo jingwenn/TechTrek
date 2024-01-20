@@ -41,7 +41,7 @@ router.post('/login', async (req, res) => {
           username: userDoc.username,
           id:userDoc._id}, jwtSecret, {expiresIn: "1h"});
         const {name,username,_id} = userDoc
-        res.cookie('token', accessToken).json({name,username,_id});
+        res.cookie('token', accessToken).json({name,username,_id, authToken: accessToken});
       } else {
         res.status(422).json('pass not ok');
       }
