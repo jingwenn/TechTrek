@@ -2,12 +2,13 @@ import React from 'react'
 import { useState, useContext } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { Alert } from 'react-alert'
+import { AppContext } from '../context/App.Context'
 
 const Login = props => {
     const navigate = useNavigate();
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    const {authToken, setAuthToken} = useContext(AppContext);
 
     const handleLogin = (username, password) => {
         console.log(username);
@@ -28,6 +29,7 @@ const Login = props => {
         .then(
             function (res) {
                 console.log(res);
+                setAuthToken(res.authToken);
                 navigate('/home')
             }
         )

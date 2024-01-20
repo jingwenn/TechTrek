@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
+import ProtectedRoute from './routes/ProtectedRoute';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Itinerary from './pages/Itinerary';
@@ -12,8 +13,12 @@ const App = () => {
     <AppContextProvider>
       <Routes>
         <Route path='/' element={<Login/>}/>
-        <Route path='/home' element={<Home/>}/>
-        <Route path='/itinerary' element={<Itinerary/>}/>
+        <Route exact path='/home' element={<ProtectedRoute/>}>
+          <Route exact path='/home' element={<Home/>}/>
+        </Route>
+        <Route exact path ='/itinerary' element={<ProtectedRoute/>}/>
+          <Route exact path='/itinerary' element={<Itinerary/>}>
+        </Route>
       </Routes>
     </AppContextProvider>
   );
