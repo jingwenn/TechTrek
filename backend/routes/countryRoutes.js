@@ -13,7 +13,7 @@ router.use(cookieParser());
 router.post("/", async (req, res) => {
   try {
     const newCountry = {
-        name: req.body.name,
+      name: req.body.name,
     };
 
     const country = await Country.create(newCountry);
@@ -24,6 +24,20 @@ router.post("/", async (req, res) => {
   }
 });
 
+// Read
+router.get("/:id", async (req, res) => {
+  try {
+    const country = await Country.findById(req.params.id);
+    if (country) {
+      res.send(country);
+    } else {
+      res.status(404).send({ message: "Country Not Found" });
+    }
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).send({ message: error.message });
+  }
+});
 
 // Read All
 router.get("/", async (req, res) => {
@@ -36,9 +50,8 @@ router.get("/", async (req, res) => {
   }
 });
 
-
 // Delete
-router.delete("/", async (req, res) => {
+router.delete("/:id", async (req, res) => {
   try {
     const country = await Country.findById(req.params.id);
     if (country) {

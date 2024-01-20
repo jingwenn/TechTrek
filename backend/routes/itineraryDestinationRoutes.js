@@ -65,7 +65,7 @@ router.put('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
   try {
     const itineraryDestination = await ItineraryDestination.findById(req.params.id).exec();
-    await itineraryDestination.remove();
+    await itineraryDestination.deleteOne({ _id: itineraryDestination._id });
     return res.status(201).send(itineraryDestination)
   }
   catch (error) {
