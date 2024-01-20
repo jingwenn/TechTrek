@@ -7,6 +7,7 @@ import userRoutes from "./routes/userRoutes.js";
 import itineraryRoutes from "./routes/itineraryRoutes.js";
 import itineraryDestinationRoutes from "./routes/itineraryDestinationRoutes.js";
 import destination from "./routes/destinationRoutes.js";
+import countryRoutes from "./routes/countryRoutes.js";
 
 const app = express();
 app.use(
@@ -24,6 +25,7 @@ app.use("/users", userRoutes);
 app.use("/itinerary", itineraryRoutes);
 app.use("/itineraryDestination", itineraryDestinationRoutes);
 app.use("/destination", destination);
+app.use("/country",countryRoutes);
 
 app.get("/", (req, res) => {
   console.log(req);
