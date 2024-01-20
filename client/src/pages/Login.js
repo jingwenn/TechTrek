@@ -1,13 +1,42 @@
 import React from 'react'
 import { useState, useContext } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Login = props => {
+    const navigate = useNavigate();
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
-    const handleLogin = (data) => {
-        
+    const handleLogin = (username, password) => {
+        console.log(username);
+        console.log(password);
+
+        axios.post(
+            'http://localhost:4000/users/login/', 
+            {
+                username: username,
+                password: password
+            },
+            {
+                headers: {
+                    'Content-Type' : 'application/json'
+                }
+            },
+        )
+        .then(
+            function (res) {
+                console.log(res);
+                navigate('/home')
+            }
+        )
+        .catch(
+            function(err) {
+                console.log(err);
+                // setBackendErrors(err?.response?.data?.message || '');
+            }
+        )
+        // navigate('/home');
     }
 
     return (
@@ -17,6 +46,7 @@ const Login = props => {
                     <span style={{display:"block", fontWeight: "bold", marginBottom:6, textAlign: "center"}}>Login Page</span>
                     <div>Username:
                         <input 
+                            name='username'
                             className='border w-full' 
                             type="email"
                             value={username}
@@ -25,6 +55,7 @@ const Login = props => {
                     </div>
                     <div>Password: 
                         <input 
+                            name='password'
                             className='border w-full' 
                             type='password' 
                             value={password}
@@ -33,8 +64,9 @@ const Login = props => {
                     </div>
                     <div className='flex justify-center items-center'>
                         <button 
+                            type='submit'
                             className='text-black border w-1/2 rounded-md my-2 bg-green-300' 
-                            onClick={handleLogin}
+                            onClick={() => handleLogin(username, password)}
                         >Login
                         </button>
                     </div>
