@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
-const jwtSecret = 'fasefraw4r5r3wq45wdfgw34twdfg';
+import { jwtSecret } from "../config.js";
+// import Itinerary from "../models/Itinerary.js"
 
 export function verifyToken(req, res, next) {
   const {token} = req.cookies;
@@ -13,17 +14,17 @@ export function verifyToken(req, res, next) {
     }
 };
 
-// export async function verifyUserClaim(req, res, next) {
+// export async function verifyUserForItinerary(req, res, next) {
 //   const {id} = req.params
 
-//   const claim = await Claims.findById(id);
-//   if (!claim) {
-//     return res.status(404).send("claim not found")
+//   const itinerary = await Itinerary.findById(id);
+//   if (!itinerary) {
+//     return res.status(404).send("not found")
 //   }
-//   if(claim.userId != req.userId) {
+//   if(itinerary.userId != req.userId) {
 //     return res.status(404).send("Unauthorised Token")
 //   }
-//   res.claimId = id;
+//   res.Id = id;
 //   next()
 // };
 
