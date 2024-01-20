@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken";
 import User from '../models/User.js'
 import cookieParser from "cookie-parser";
 import { jwtSecret } from "../config.js";
+import {verifyToken} from '../middelware/authMiddleware.js';
 
 const router = express.Router();
 router.use(cookieParser());
@@ -53,7 +54,7 @@ router.post('/logout', (req,res) => {
   res.cookie('token', '').json(true);
 });
 
-router.get('/profile', async(req,res) => {
+router.get('/profile', verifyToken, async(req,res) => {
   const {name,username,_id} = await User.findById(req.userId);
   res.json({name,username,_id});
 }); 
