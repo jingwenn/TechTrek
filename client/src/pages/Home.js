@@ -3,7 +3,8 @@ import PropTypes from 'prop-types'
 import axios, { all } from 'axios'
 import { AppContext } from '../context/App.Context'
 import Card from '../components/Card';
-//import "./Home.css";
+import {Link} from 'react-router-dom';
+import "./Home.css";
 
 
 const Home = props => {
@@ -57,6 +58,8 @@ const Home = props => {
           )
         })}
       </div>
+
+      <Link class="btn" to="/editItinerary">Add New Itinerary</Link>
 
       <div>
       </div>
