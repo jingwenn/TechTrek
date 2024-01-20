@@ -6,7 +6,9 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Itinerary from './pages/Itinerary';
 import { AppContextProvider } from './context/App.Context';
+import axios from "axios";
 
+axios.defaults.withCredentials = true;
 
 const App = () => {
   return (
