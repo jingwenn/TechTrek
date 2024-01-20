@@ -21,11 +21,11 @@ app.use(
 
 app.use(express.json());
 app.use(cookieParser());
-app.use("/users", userRoutes);
+app.use("/user", userRoutes);
 app.use("/itinerary", itineraryRoutes);
 app.use("/itineraryDestination", itineraryDestinationRoutes);
 app.use("/destination", destination);
-app.use("/country",countryRoutes);
+app.use("/country", countryRoutes);
 
 app.get("/", (req, res) => {
   console.log(req);
