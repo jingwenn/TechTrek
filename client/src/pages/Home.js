@@ -3,16 +3,17 @@ import PropTypes from 'prop-types'
 import axios, { all } from 'axios'
 import { AppContext } from '../context/App.Context'
 import Card from '../components/Card';
+// import "./Home.css";
 
 
 const Home = props => {
   const { allItineraries, setAllItineraries, authToken } = useContext(AppContext); 
 
   const getItineraries = async (req, res) => {
-    axios.get('http://localhost:4000/itenarary/',{
+    axios.get('http://localhost:4000/itinerary/',{
       headers: {
         'Content-Type' : 'application/json',
-        'Cookie' : 'uid'
+        'Authorization' : 'authToken'
       }
     }).then(() => {
       setAllItineraries(res.data);
@@ -21,13 +22,14 @@ const Home = props => {
     })
   }
 
-  const removeItineraries = async (req, res) => {
-    axios.delete('http://localhost:4000/itenarary/',{
+  const removeItinerary = async (id) => {
+    axios.delete('/:id',{
       headers: {
         'Content-Type' : 'application/json',
         'Authorization' : authToken
       }
     }).then(() => {
+      setAllItineraries(allItineraries.filter((itinerary) => itinerary.id !== id))
     }).catch((err) => {
       console.log(err);
     })
@@ -43,16 +45,13 @@ const Home = props => {
           "Singapore"
         }/>
       </div>
-      {/* <div>
+      <div>
         {allItineraries.map((itinerary) => {
           return (
-            <Card 
-            {title: {itinerary.title}
-            budget:{itinerary.budget}}
-              />
+            <Card title={itinerary.title} budget={itinerary.budget}/>
           )
         })}
-      </div> */}
+      </div>
     
 
     </div>
