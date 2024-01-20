@@ -7,24 +7,76 @@ import cookieParser from "cookie-parser";
 const router = express.Router();
 router.use(cookieParser());
 
-// // Test
-// router.get('/', (req, res) => {
-//     return res.status(201).send("ITINERARY DESTINATION Connection SUCCESS");
-//   });
+// Create ItineraryDestination.itinerary_id, ItineraryDestination.destination_id
+router.post('/', async (req, res) => {
+  try {
+    const newItineraryDestination = {
+      itineraryid: req.body.itineraryid,
+      destinationid: req.body.destinationid,
+    };
+    const itineraryDestination = await ItineraryDestination.create(newItineraryDestination);
+    return res.status(201).send(itineraryDestination)
+  }
+  catch (error) {
+    console.log(error.message);
+    res.status(500).send({ message: error.message });
+  }
+});
 
-// // Create
-// router.post('/', async (req, res) => {
+// Read ItineraryDestination.itinerary_id, ItineraryDestination.destination_id filtered by ItineraryDestination.id
+router.get('/:id', async (req, res) => {
+  try {
+    const itineraryDestination = await ItineraryDestination.findById(req.params.id).exec();
+    return res.status(201).send(itineraryDestination)
+  }
+  catch (error) {
+    console.log(error.message);
+    res.status(500).send({ message: error.message });
+  }
+});
 
-// // Read
-// router.get('/:id', async (req, res) => {
+// Read All ItineraryDestination.id, ItineraryDestination.itinerary_id, ItineraryDestination.destination_id
+router.get('/', async (req, res) => {
+  try {
+    const itineraryDestinations = await ItineraryDestination.find({});
+    return res.status(201).send(itineraryDestinations)
+  }
+  catch (error) {
+    console.log(error.message);
+    res.status(500).send({ message: error.message });
+  }
+});
 
-// // Read All
-// router.get('/', async (req, res) => {
+// Update ItineraryDestination.itinerary_id, ItineraryDestination.destination_id filtered by ItineraryDestination.id
+router.put('/:id', async (req, res) => {
+  try {
+    const itineraryDestination = await ItineraryDestination.findById(req.params.id).exec();
+    itineraryDestination.itineraryid = req.body.itineraryid;
+    itineraryDestination.destinationid = req.body.destinationid;
+    await itineraryDestination.save();
+    return res.status(201).send(itineraryDestination)
+  }
+  catch (error) {
+    console.log(error.message);
+    res.status(500).send({ message: error.message });
+  }
+});
 
-// // Update
-// router.put('/:id', async (req, res) => {
 
-// // Delete
-// router.delete('/:id', async (req, res) => {
+// Delete ItineraryDestination.itinerary_id, ItineraryDestination.destination_id filtered by ItineraryDestination.id
+router.delete('/:id', async (req, res) => {
+  try {
+    const itineraryDestination = await ItineraryDestination.findById(req.params.id).exec();
+    await itineraryDestination.remove();
+    return res.status(201).send(itineraryDestination)
+  }
+  catch (error) {
+    console.log(error.message);
+    res.status(500).send({ message: error.message });
+  }
+});
 
-export default router;
+
+
+
+export default router
