@@ -15,7 +15,7 @@ const Home = props => {
     axios.get('http://localhost:4000/itenarary/',{
       headers: {
         'Content-Type' : 'application/json',
-        'Cookie' : authToken
+        'Authorization' : authToken
       }
     }).then(() => {
       setAllItenararies(res.data);
