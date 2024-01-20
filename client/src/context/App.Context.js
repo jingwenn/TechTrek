@@ -8,6 +8,7 @@ export const AppContextProvider = ({ children }) => {
     const [countryMapping, setCountryMapping] = useState({});
     const [allItenararies, setAllItenararies] = useState({});
     const [itenarary, setItenarary] = useState({});
+    const [username, setUsername] = useState('');
 
     return (
         <AppContext.Provider
