@@ -27,6 +27,34 @@ router.post('/register', async (req, res) => {
       }
 });
 
+//User Login
+router.post('/login', async (req, res) => {
+    const username = req.body.username;
+    const password = req.body.password;
+    const userDoc = await User.findOne({username});
+    if (userDoc) {
+      const passOk = bcrypt.compareSync(password, userDoc.password);
+      if (passOk) {
+        const accessToken = jwt.sign({
+          username: userDoc.username,
+          id:userDoc._id}, jwtSecret, {expiresIn: "1h"});
+        const {name,username,_id} = userDoc
+        res.cookie('token', accessToken).json({name,username,_id});
+      } else {
+        res.status(422).json('pass not ok');
+      }
+    } else {
+      res.status(422).json('not found');
+    }
+});
   
+router.post('/logout', (req,res) => {
+  res.cookie('token', '').json(true);
+});
+
+router.get('/profile', async(req,res) => {
+  const {name,username,_id} = await User.findById(req.userId);
+  res.json({name,username,_id});
+}); 
 
 export default router
