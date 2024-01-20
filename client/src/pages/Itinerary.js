@@ -5,6 +5,7 @@ const Itineraries = () => {
     <div>
       <h3>Itinerary Title</h3>
       <p>Country: {{}}</p>
+      <button>Add</button>
     </div>
   )
 }
