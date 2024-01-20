@@ -15,7 +15,7 @@ const Login = props => {
         console.log(password);
 
         axios.post(
-            'http://192.168.52.221:4000/user/login/', 
+            'http://localhost:4000/user/login/', 
             {
                 username: username,
                 password: password
