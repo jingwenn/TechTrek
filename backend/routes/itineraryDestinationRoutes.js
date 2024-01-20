@@ -75,6 +75,26 @@ router.delete('/:id', async (req, res) => {
 });
 
 
+// Get all destination_id for a singular itenerary_id
+router.get('/itinerary/:id', async (req, res) => {
+  try {
+    const itineraryDestinations = await ItineraryDestination.find({itinerary_id: req.params.id});
+    const itinerary_id = req.params.id
+    let destination_ids = {destination_ids: []}
+
+    for (const destination in itineraryDestinations) {
+      //append to destination_ids[itinerary_id]
+      destination_ids.destination_ids.push(itineraryDestinations[destination].destination_id)
+    }
+
+    return res.status(201).send(destination_ids)
+  }
+  catch (error) {
+    console.log(error.message);
+    res.status(500).send({ message: error.message });
+  }
+});
+
 
 
 export default router
