@@ -1,8 +1,6 @@
 import express from "express";
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
-import User from "../models/User.js";
 import Itinerary from "../models/Itinerary.js";
+import Country from "../models/Country.js";
 import cookieParser from "cookie-parser";
 
 const router = express.Router();
@@ -81,6 +79,32 @@ router.delete("/:id", async (req, res) => {
       res.send({ message: "Itinerary Deleted" });
     } else {
       res.status(404).send({ message: "Itinerary Not Found" });
+    }
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).send({ message: error.message });
+  }
+});
+
+//Itinerary Destinations filtered by user_id
+router.get("/user/:id", async (req, res) => {
+  try {
+    const itineraries = await Itinerary.find({ user_id: req.params.id });
+    if (itineraries) {
+      // for itinerary in itineraries get country name from countryid
+      let user_itinerary_information = {}
+      for (const itinerary of itineraries) {
+        const country = await Country.findById(itinerary.country_id);
+        user_itinerary_information[itinerary._id] = {
+          title: itinerary.title,
+          country_id: country._id,
+          country_name: country.name,
+          budget: itinerary.budget,
+        };
+      }
+      res.send(user_itinerary_information);
+    } else {
+      res.status(404).send({ message: "itinerary not found" });
     }
   } catch (error) {
     console.log(error.message);
