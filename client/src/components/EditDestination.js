@@ -11,25 +11,26 @@ const EditDestination = () => {
   return (
     <div>
         <Typography variant ="h4" style={{marginTop:"10px"}}> Destination </Typography>
-        <Grid container spacing={2}>
-            
-        </Grid>
-        <p>name</p>
-        <p>Cost</p>
-        <p>notes</p>
 
-        {/* <Grid container spacing={2}>
+        <Grid container spacing={2}>
           <Grid item style={{display:"flex"}}>
-            <p>Country:</p>
-            <Typography style={{border:"1px solid", borderRadius:"5px", width: '100%'}}>$1000</Typography>
+            <p>Name:</p>
+            <Typography style={{border:"1px solid", borderRadius:"5px", width: '100%'}}>Name</Typography>
           </Grid>
         </Grid>
         <Grid container spacing={2}>
           <Grid item style={{display:"flex", marginTop:"10px"}}>
-            <p>Budget:</p>
+            <p>Cost:</p>
             <Typography style={{border:"1px solid", borderRadius:"5px"}}>$1000</Typography>
           </Grid>
-        </Grid> */}
+        </Grid>
+        <Grid container spacing={2}>
+          <Grid item style={{display:"flex", marginTop:"10px"}}>
+            <p>Notes:</p>
+            <Typography style={{border:"1px solid", borderRadius:"5px"}}>note</Typography>
+          </Grid>
+        </Grid>
+
     </div>
   )
 }
