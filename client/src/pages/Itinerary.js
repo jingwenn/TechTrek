@@ -9,7 +9,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { TextField } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import Card from '../components/Card';
-import { useState } from 'react'
+import { useState, useEffect } from 'react';
 import { Dialog } from '@headlessui/react'
 import Popover from '../components/Popover';
 import axios from 'axios';
@@ -19,6 +19,16 @@ import axios from 'axios';
 const Itinerary = ({id}) => {
   let [isOpen, setIsOpen] = useState(true)
   const [allDestination, setAllDestination] = useState([])
+  const [itinerary, setItinerary] = useState([])
+
+  useEffect(()=>{
+    const getItinerary = async () => {
+      const itineraryFromServer = await getItinerary()
+      setItinerary(itineraryFromServer)
+    }
+
+    getItinerary()
+  })
 
   function closeModal() {
     setIsOpen(1)
@@ -37,12 +47,13 @@ const Itinerary = ({id}) => {
 
   // Add Itinerary
   const postItinerary = async(id) => {
-    const res = await axios.post("")
+    const res = await axios.post(`http://localhost:4000/itineraryDestination`)
     return res.data
   }
 
   // update
   const updateItinerary = async(id) => {
+    const updItinerary = {}
     const res = await axios.put(`http://localhost:4000/itinerary/${id}`, updItinerary, {
       headers: {
         'Content-type': 'application/json'
@@ -53,9 +64,10 @@ const Itinerary = ({id}) => {
   }
 
     // delete
-    const deleteItinerary = async(itinerary_id) => {
+    const deleteDestination = async(itinerary_id) => {
 
-      await axios.delete(`http://localhost:4000/itinerary/${itinerary_id}`)
+      await axios.delete(`http://localhost:4000/destination/${itinerary_id}`)
+      .try()
       .catch(function(error) {
         if (error.response) {
           console.log(error.response.data)
@@ -99,7 +111,8 @@ const Itinerary = ({id}) => {
           <div className="flex justify-center mb-4">
             <Card data={'country'} />
             {/* Pass itinerary and Id */}
-{/* 
+            
+            {/* 
             {.map((itinerary_id, destination_id) => {
               return 
               <Card></Card>
