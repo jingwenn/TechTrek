@@ -21,14 +21,14 @@ const Itinerary = ({id}) => {
   const [allDestination, setAllDestination] = useState([])
   const [itinerary, setItinerary] = useState([])
 
-  useEffect(()=>{
-    const getItinerary = async () => {
-      const itineraryFromServer = await getItinerary()
-      setItinerary(itineraryFromServer)
-    }
+  // useEffect(()=>{
+  //   const getItinerary = async () => {
+  //     const itineraryFromServer = await getItinerary()
+  //     setItinerary(itineraryFromServer)
+  //   }
 
-    getItinerary()
-  })
+  //   getItinerary()
+  // })
 
   function closeModal() {
     setIsOpen(1)
