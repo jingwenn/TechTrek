@@ -65,15 +65,15 @@ const Itinerary = ({id}) => {
 
     // delete
     const deleteDestination = async(itinerary_id) => {
+      try {
+       await axios.delete(`http://localhost:4000/destination/${itinerary_id}`)
 
-      await axios.delete(`http://localhost:4000/destination/${itinerary_id}`)
-      .try()
-      .catch(function(error) {
+      //  setItinerary(itinerary.filter((iti)=> iti.id != itinerary_id))
+      } catch(error) {
         if (error.response) {
           console.log(error.response.data)
         }
-      })
-  
+      }
     }
 
   // get all destination
