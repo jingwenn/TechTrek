@@ -38,7 +38,7 @@ router.get("/", async (req, res) => {
 
 
 // Delete
-router.delete("/", async (req, res) => {
+router.delete("/:id", async (req, res) => {
   try {
     const country = await Country.findById(req.params.id);
     if (country) {
