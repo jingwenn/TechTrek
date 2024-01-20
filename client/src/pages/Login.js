@@ -2,6 +2,7 @@ import React from 'react'
 import { useState, useContext } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { Alert } from 'react-alert'
 
 const Login = props => {
     const navigate = useNavigate();
@@ -13,7 +14,7 @@ const Login = props => {
         console.log(password);
 
         axios.post(
-            'http://localhost:4000/users/login/', 
+            'http://192.168.52.221:4000/user/login/', 
             {
                 username: username,
                 password: password
@@ -33,10 +34,9 @@ const Login = props => {
         .catch(
             function(err) {
                 console.log(err);
-                // setBackendErrors(err?.response?.data?.message || '');
+                alert("Wrong username or password. Please try again!");
             }
         )
-        // navigate('/home');
     }
 
     return (
@@ -48,7 +48,7 @@ const Login = props => {
                         <input 
                             name='username'
                             className='border w-full' 
-                            type="email"
+                            type="text"
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
                         />                
@@ -66,7 +66,10 @@ const Login = props => {
                         <button 
                             type='submit'
                             className='text-black border w-1/2 rounded-md my-2 bg-green-300' 
-                            onClick={() => handleLogin(username, password)}
+                            onClick={(e) => {
+                                e.preventDefault();
+                                handleLogin(username, password);
+                            }}
                         >Login
                         </button>
                     </div>
